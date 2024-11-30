@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
 // Use the correct backend URL after deployment
-const socket = io('https://chatapp-e5km.vercel.app'); 
+const socket = io('https://chatapp-1-18vy.onrender.com'); 
 
 const App = () => {
   const [mymessage, setmymessage] = useState('');
