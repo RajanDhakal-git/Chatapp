@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io.connect('https://chatapp-e5km.vercel.app');
+// Use the correct backend URL after deployment
+const socket = io('https://chatapp-e5km.vercel.app'); 
 
 const App = () => {
   const [mymessage, setmymessage] = useState('');
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    // Listen for incoming messages
     socket.on('rec', (data) => {
       setMessages((prevMessages) => [...prevMessages, data.message]);
     });
 
+    // Cleanup on component unmount
     return () => {
-      socket.off('rec'); // Clean up the listener on component unmount
+      socket.off('rec');
     };
   }, []);
 
   const sendmsg = () => {
     if (mymessage.trim() !== '') {
-      socket.emit('msg', { message: mymessage });
-      setmymessage('');
+      socket.emit('msg', { message: mymessage }); // Send message to the server
+      setmymessage(''); // Clear input
     }
   };
 
