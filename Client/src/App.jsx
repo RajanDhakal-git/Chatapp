@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io.connect('https://chatapp-e5km.vercel.app/');
+const socket = io.connect('https://chatapp-e5km.vercel.app');
 
 const App = () => {
   const [mymessage, setmymessage] = useState('');
